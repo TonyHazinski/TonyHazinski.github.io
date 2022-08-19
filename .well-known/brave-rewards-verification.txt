@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: tonyhazinski.github.io
-Token: d7c82f7c156bea344a7d5b498ec1dadc2c356dddba56db8dccd7dbeab02534df
