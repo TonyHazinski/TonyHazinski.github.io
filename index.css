@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+nav {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(52, 52, 52);
+    color: white;
+    height: 80px;
+    line-height: 80px;
+    display: block;
+
+}
+
+#title-name {
+    margin-left: 25px;
+    font-size: 30px;
+}
+
+#links {
+    margin-left: 25px;
+    color: white;
+    font-size: 20px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    margin-left: 25px;
+}
+
+#socials {
+    margin-left: auto;
+    margin-right: 50px;
+}
+
+.social-logo {
+    height: 30px;
+    width: auto;
+}
