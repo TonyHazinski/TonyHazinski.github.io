@@ -2,14 +2,13 @@ body {
     margin: 0;
     padding: 0;
 }
-nav {
+header {
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(52, 52, 52);
     color: white;
     height: 80px;
     line-height: 80px;
-    display: block;
-
+    
 }
 
 #title-name {
@@ -35,6 +34,6 @@ nav {
 }
 
 .social-logo {
-    height: 30px;
+    height: 40px;
     width: auto;
 }
