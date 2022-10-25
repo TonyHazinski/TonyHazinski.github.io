@@ -1,0 +1,13 @@
+article {
+    width: 70%;
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+.article-title {
+    text-align: center;
+}
+
+.tab {
+    text-indent: 40px;
+}
