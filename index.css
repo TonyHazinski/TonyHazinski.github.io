@@ -9,6 +9,9 @@ header {
     height: 80px;
     line-height: 80px;
     overflow: hidden;
+    position: sticky;
+    top: 0;
+    left: 0;
     
 }
 
