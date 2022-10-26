@@ -33,8 +33,9 @@ header {
     margin-left: 25px;
 }
 
-#current-page {
-    color: lightblue;
+.current-page {
+    border-bottom: 2px solid white;
+    padding-bottom: 4px;
 }
 
 #socials {
