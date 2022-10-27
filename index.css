@@ -8,11 +8,6 @@ header {
     color: white;
     height: 80px;
     line-height: 80px;
-    overflow: hidden;
-    position: sticky;
-    top: 0;
-    left: 0;
-    
 }
 
 #title-name {
@@ -31,6 +26,12 @@ header {
     text-decoration: none;
     color: white;
     margin-left: 25px;
+    transition: padding .25s;
+}
+
+.nav-link:hover {
+    border-bottom: 2px solid white;
+    padding-bottom: 4px;
 }
 
 .current-page {
