@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href=".../index.css">
+    <link rel="stylesheet" href="sorting_visualizer.css">
+    <script defer>
+    </script>
 </head>
 <body>
     <header>
@@ -18,5 +22,15 @@
             <a href="https://www.linkedin.com/in/anthony-hazinski-38163a235/" target="_blank" class="social-link"><img src="./assets/LinkedIn-Logos/In/Digital/White/2x/In-White-40@2x.png" alt="" class="social-logo"></a>
         </span>
     </header>
+    <div id="control-panel">
+        <div class="center">
+            <select name="" id="sort-select">
+                <option value="0" selected disabled>Make a selection</option>
+                <option value="bubble-sort">Bubble Sort</option>
+                <option value="insertion-sort">Insertion Sort</option>
+            </select>
+            <button onclick="start_visualization()">Go</button>
+        </div>
+    </div>
 </body>
 </html>
