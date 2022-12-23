@@ -22,28 +22,43 @@ button:active{
 }
 
 #array {
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    border: 1px solid black;
+    width: 620px;
+    height: 62px;
 }
 
 .array-element {
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-    height: 60px;
+    display: inline-block;
     width: 60px;
+    height: 60px;
+    border: 1px solid black;
     font-size: 24px;
-    line-height: 60px;
     text-align: center;
+    line-height: 60px;
 }
 
-.array-element:first-child {
-    border-left: 2px solid black;
+@keyframes swapforwards {
+    0% {
+        top: 0px;
+        left: 0px
+    }
+    33% {
+        top: 80px;
+        left: 0px;
+    }
+    66% {
+        top: 80px;
+        left: 62px;
+    }
+    100% {
+        top: 0px;
+        left: 62px;
+    }
 }
 
-.array-element:last-child {
-    border-right: 2px solid black;
+@keyframes swapBackwards {
+    
 }
