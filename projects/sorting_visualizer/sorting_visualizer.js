@@ -29,6 +29,7 @@ function incrementJ(i, j) {
         element.style.top = "0px"
         element.style.left = "0px"
         second.style.left = "0px"
+        element.style.backgroundColor = "lightblue"
         let moveDown = setInterval(() => {
             if (element.style.top.slice(0, -2) < 70 && element.style.left.slice(0, -2) < 62) {
                 element.style.top = parseInt(element.style.top.slice(0, -2)) + 1 + "px";
@@ -44,14 +45,19 @@ function incrementJ(i, j) {
                 second.innerText = unsortedArray[j + 1];
                 element.style.top = "0px"
                 element.style.left = "0px"
+                element.style.backgroundColor = "white"
                 second.style.left = "0px"
                 clearInterval(moveDown)
                 incrementJ(i, j + 1)
             }
         }, 500/70);
     }
-    if (j < unsortedArray.length -1 && animated) {
-        incrementJ(i, j + 1)
+    else if (j < unsortedArray.length -1 && animated) {
+        document.getElementById(j).style.backgroundColor = "lightblue";
+        setTimeout(() => {
+            document.getElementById(j).style.backgroundColor = "white"
+            incrementJ(i, j + 1)
+        }, 500);
     }
     else if (animated){
         incrementI(i + 1)
