@@ -38,67 +38,27 @@ button:active{
     font-size: 24px;
     text-align: center;
     line-height: 60px;
+    position: relative;
 }
 
 .animate {
     animation: swapforwards 3s infinite;
-    -webkit-animation: swapforwards 3s infinite;
-    -moz-animation: swapforwards 3s infinite;
+}
+
+.back {
+    animation: swapbackwards 3s infinite;
 }
 
 @keyframes swapforwards {
-    0% {
-        top: 0px;
-        left: 0px
-    }
-    33% {
-        top: 80px;
-        left: 0px;
-    }
-    66% {
-        top: 80px;
-        left: 62px;
-    }
-    100% {
-        top: 0px;
-        left: 62px;
-    }
+    0% {top: 0px; left: 0px}
+    33% {top: 80px; left: 0px;}
+    66% {top: 80px; left: 62px;}
+    100% {top: 0px; left: 62px;}
 }
 
-@-webkit-keyframes swapforwards {
-    0% {
-        top: 0px;
-        left: 0px
-    }
-    33% {
-        top: 80px;
-        left: 0px;
-    }
-    66% {
-        top: 80px;
-        left: 62px;
-    }
-    100% {
-        top: 0px;
-        left: 62px;
-    }
-}
-
-@-moz-keyframes swapforwards {
-    0% {
-        top: 0px;
-        left: 0px
-    }
-    33% {
-        top: 80px;
-        left: 0px;
-    }
-    66% {
-        top: 80px;
-        left: 62px;
-    }
-    100% {
-        top: 0px;
-        left: 62px;
-    }
+@keyframes swapbackwards {
+    0% {top: 0px; left: 0px;}
+    33% {top: 0px; left: 0px;}
+    66% {top: 0px; left: -62px;}
+    100% {top: 0px; left: -62px;}
 }
