@@ -121,24 +121,20 @@ async function visualizeModifiedBubbleSort() {
 async function visualizeSelectionSort() {
     for (let i = 0; i < unsortedArray.length - 1; i++) {
         let smallest = i;
-        let iElement = document.getElementById(i);
-        //let smallestElement = document.getElementById(smallest);
-        smallestElement.style.backgroundColor = "lightgreen";
         for (let j = i + 1; j < unsortedArray.length; j++) {
             document.getElementById(j).style.backgroundColor = "lightblue";
             await sleep(500);
             document.getElementById(j).style.backgroundColor = "white";
             if (unsortedArray[j] < unsortedArray[smallest]) {
                 smallest = j;
-                smallestElement.style.backgroundColor = "white";
-                smallestElement = document.getElementById(j);
-                //smallestElement.style.backgroundColor = "lightgreen";
             }
         }
         if (smallest != i) {
             let temp = unsortedArray[i]
             unsortedArray[i] = unsortedArray[smallest]
             unsortedArray[smallest] = temp;
+            let smallestElement = document.getElementById(smallest);
+            let iElement = document.getElementById(i);
             smallestElement.style.top = "0px";
             smallestElement.style.left = "0px";
             let smallestTop = 0;
@@ -175,6 +171,5 @@ async function visualizeSelectionSort() {
             iElement.innerText = unsortedArray[i];
             smallestElement.innerText = unsortedArray[smallest];
         }
-        smallestElement.style.backgroundColor = "white";
     }
 }
