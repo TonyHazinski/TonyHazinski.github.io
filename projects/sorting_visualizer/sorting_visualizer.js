@@ -8,104 +8,173 @@ function randomizeArray() {
     }
 }
 
-function incrementI(i) {
-    if (i < unsortedArray.length - 1) {
-        let j = 0;
-        incrementJ(i, j)
-    }
-}
-
-function incrementJ(i, j) {
-    console.log("i = " + i)
-    console.log("j = " + j)
-    let animated = true;
-    if(unsortedArray[j] > unsortedArray[j + 1]) {
-        animated = false;
-        let temp = unsortedArray[j];
-        unsortedArray[j] = unsortedArray[j + 1];
-        unsortedArray[j + 1] = temp;
-        let element = document.getElementById(j)
-        let second = document.getElementById(j + 1)
-        element.style.top = "0px"
-        element.style.left = "0px"
-        second.style.left = "0px"
-        element.style.backgroundColor = "lightblue"
-        let moveDown = setInterval(() => {
-            if (element.style.top.slice(0, -2) < 70 && element.style.left.slice(0, -2) < 62) {
-                element.style.top = parseInt(element.style.top.slice(0, -2)) + 1 + "px";
-            } 
-            else if (second.style.left.slice(0, -2) > -62 && element.style.left.slice(0, -2) < 62) {
-                second.style.left = second.style.left.slice(0, -2) - 1 + "px";
-                element.style.left = parseInt(element.style.left.slice(0, -2)) + 1 + "px";
-            } else if (element.style.top.slice(0, -2) > 0) {
-                element.style.top = parseInt(element.style.top.slice(0, -2)) - 1 + "px";
-            }
-            else {
-                element.innerText = unsortedArray[j];
-                second.innerText = unsortedArray[j + 1];
-                element.style.top = "0px"
-                element.style.left = "0px"
-                element.style.backgroundColor = "white"
-                second.style.left = "0px"
-                clearInterval(moveDown)
-                incrementJ(i, j + 1)
-            }
-        }, 500/70);
-    }
-    else if (j < unsortedArray.length -1 && animated) {
-        document.getElementById(j).style.backgroundColor = "lightblue";
-        setTimeout(() => {
-            document.getElementById(j).style.backgroundColor = "white"
-            incrementJ(i, j + 1)
-        }, 500);
-    }
-    else if (animated){
-        incrementI(i + 1)
-    }
-}
-
 function startVisualization() {
 
     let selectedSort = document.getElementById("sort-select").value;
 
     if(selectedSort === "bubble") {
         visualizeBubbleSort();
+    } else if (selectedSort === "modifiedBubble") {
+        visualizeModifiedBubbleSort();
+    } else if (selectedSort === "selection") {
+        visualizeSelectionSort();
     }
 }
 
-function visualizeBubbleSort() {
-    incrementI(0)
-    // for(let i = 0; i < unsortedArray.length - 1; i++) {
-    //     for (let j = 0; j < unsortedArray.length - 1; j++) {
-    //         if(unsortedArray[j] > unsortedArray[j + 1]) {
-    //             let temp = unsortedArray[j];
-    //             unsortedArray[j] = unsortedArray[j + 1];
-    //             unsortedArray[j + 1] = temp;
-    //             let element = document.getElementById(j)
-    //             let second = document.getElementById(j + 1)
-    //             element.style.top = "0px"
-    //             element.style.left = "0px"
-    //             second.style.left = "0px"
-    //             let moveDown = setInterval(() => {
-    //                 if (element.style.top.slice(0, -2) < 70 && element.style.left.slice(0, -2) < 62) {
-    //                     element.style.top = parseInt(element.style.top.slice(0, -2)) + 1 + "px";
-    //                 } 
-    //                 else if (second.style.left.slice(0, -2) > -62 && element.style.left.slice(0, -2) < 62) {
-    //                     second.style.left = second.style.left.slice(0, -2) - 1 + "px";
-    //                     element.style.left = parseInt(element.style.left.slice(0, -2)) + 1 + "px";
-    //                 } else if (element.style.top.slice(0, -2) > 0) {
-    //                     element.style.top = parseInt(element.style.top.slice(0, -2)) - 1 + "px";
-    //                 }
-    //                 else {
-    //                     element.innerText = unsortedArray[j];
-    //                     second.innerText = unsortedArray[j + 1];
-    //                     element.style.top = "0px"
-    //                     element.style.left = "0px"
-    //                     second.style.left = "0px"
-    //                     clearInterval(moveDown)
-    //                 }
-    //             }, 1000/70);
-    //         }
-    //     }
-    // }
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+async function visualizeBubbleSort() {
+    for(let i = 0; i < unsortedArray.length - 1; i++) {
+        for (let j = 0; j < unsortedArray.length - 1; j++) {
+            document.getElementById(j).style.backgroundColor = "lightblue";
+            await sleep(500);
+            if(unsortedArray[j] > unsortedArray[j + 1]) {
+                let temp = unsortedArray[j];
+                unsortedArray[j] = unsortedArray[j + 1];
+                unsortedArray[j + 1] = temp;
+                let larger = document.getElementById(j)
+                let smaller = document.getElementById(j + 1)
+                larger.style.top = "0px";
+                larger.style.left = "0px";
+                let largerTop = 0;
+                let largerLeft = 0;
+                smaller.style.left = "0px";
+                let smallerLeft = 0;
+                while (largerTop < 70) {
+                    await sleep(4);
+                    largerTop += 1;
+                    larger.style.top = largerTop + "px";
+                }
+                while (largerLeft < 62) {
+                    await sleep(4);
+                    largerLeft += 1;
+                    smallerLeft -=1;
+                    larger.style.left = largerLeft + "px";
+                    smaller.style.left = smallerLeft + "px";
+                }
+                while (largerTop > 0) {
+                    await sleep(4);
+                    largerTop -= 1;
+                    larger.style.top = largerTop + "px";
+                }
+                larger.style.top = "0px";
+                larger.style.left = "0px";
+                smaller.style.left = "0px";
+                larger.innerText = unsortedArray[j]
+                smaller.innerText = unsortedArray[j + 1]
+            }
+            document.getElementById(j).style.backgroundColor = "white";
+        }
+    }
+}
+
+async function visualizeModifiedBubbleSort() {
+    let sorted = false;
+    for(let i = 0; i < unsortedArray.length - 1 && !sorted; i++) {
+        sorted = true
+        for (let j = 0; j < unsortedArray.length - 1 - i; j++) {
+            document.getElementById(j).style.backgroundColor = "lightblue";
+            await sleep(500);
+            if(unsortedArray[j] > unsortedArray[j + 1]) {
+                sorted = false
+                let temp = unsortedArray[j];
+                unsortedArray[j] = unsortedArray[j + 1];
+                unsortedArray[j + 1] = temp;
+                let larger = document.getElementById(j)
+                let smaller = document.getElementById(j + 1)
+                larger.style.top = "0px";
+                larger.style.left = "0px";
+                let largerTop = 0;
+                let largerLeft = 0;
+                smaller.style.left = "0px";
+                let smallerLeft = 0;
+                while (largerTop < 70) {
+                    await sleep(4);
+                    largerTop += 1;
+                    larger.style.top = largerTop + "px";
+                }
+                while (largerLeft < 62) {
+                    await sleep(4);
+                    largerLeft += 1;
+                    smallerLeft -=1;
+                    larger.style.left = largerLeft + "px";
+                    smaller.style.left = smallerLeft + "px";
+                }
+                while (largerTop > 0) {
+                    await sleep(4);
+                    largerTop -= 1;
+                    larger.style.top = largerTop + "px";
+                }
+                larger.style.top = "0px";
+                larger.style.left = "0px";
+                smaller.style.left = "0px";
+                larger.innerText = unsortedArray[j]
+                smaller.innerText = unsortedArray[j + 1]
+            }
+            document.getElementById(j).style.backgroundColor = "white";
+        }
+    }
+}
+
+async function visualizeSelectionSort() {
+    for (let i = 0; i < unsortedArray.length - 1; i++) {
+        let smallest = i;
+        let iElement = document.getElementById(i);
+        //let smallestElement = document.getElementById(smallest);
+        smallestElement.style.backgroundColor = "lightgreen";
+        for (let j = i + 1; j < unsortedArray.length; j++) {
+            document.getElementById(j).style.backgroundColor = "lightblue";
+            await sleep(500);
+            document.getElementById(j).style.backgroundColor = "white";
+            if (unsortedArray[j] < unsortedArray[smallest]) {
+                smallest = j;
+                smallestElement.style.backgroundColor = "white";
+                smallestElement = document.getElementById(j);
+                //smallestElement.style.backgroundColor = "lightgreen";
+            }
+        }
+        if (smallest != i) {
+            let temp = unsortedArray[i]
+            unsortedArray[i] = unsortedArray[smallest]
+            unsortedArray[smallest] = temp;
+            smallestElement.style.top = "0px";
+            smallestElement.style.left = "0px";
+            let smallestTop = 0;
+            let smallestLeft = 0;
+            iElement.style.top = "0px";
+            iElement.style.left = "0px";
+            let iElementTop = 0;
+            let iElementLeft = 0;
+            while (smallestTop < 70) {
+                await sleep(4);
+                smallestTop += 1;
+                iElementTop -= 1;
+                smallestElement.style.top = smallestTop + "px";
+                iElement.style.top = iElementTop + "px";
+            }
+            while (smallestLeft > (62 * (smallest - i)) * -1) {
+                await sleep(4);
+                smallestLeft -= 1;
+                iElementLeft += 1;
+                smallestElement.style.left = smallestLeft + "px";
+                iElement.style.left = iElementLeft + "px";
+            }
+            while (smallestTop > 0) {
+                await sleep(4);
+                smallestTop -= 1;
+                iElementTop += 1;
+                smallestElement.style.top = smallestTop + "px";
+                iElement.style.top = iElementTop + "px";
+            }
+            smallestElement.style.top = "0px";
+            smallestElement.style.left = "0px";
+            iElement.style.top = "0px";
+            iElement.style.left = "0px";
+            iElement.innerText = unsortedArray[i];
+            smallestElement.innerText = unsortedArray[smallest];
+        }
+        smallestElement.style.backgroundColor = "white";
+    }
 }
