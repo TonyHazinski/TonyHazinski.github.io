@@ -172,17 +172,19 @@ async function visualizeInsertionSort() {
         let iElement = document.getElementById(i);
         let iTop = 0;
         let iLeft = 0;
-        while (iTop < 70) {
-            await sleep(4);
-            iTop++;
-            iElement.style.top = iTop + "px";
-        }
+        iElement.style.backgroundColor = "lightblue";
+        await sleep(500)
         let emptyspace = i;
         for (let j = i - 1; j >= 0; j--) {
             if (unsortedArray[j] > temp) {
                 unsortedArray[j + 1] = unsortedArray[j];
                 let jElement = document.getElementById(j);
                 let jLeft = 0;
+                while (iTop < 70) {
+                    await sleep(4);
+                    iTop++;
+                    iElement.style.top = iTop + "px";
+                }
                 while (jLeft < 62) {
                     await sleep(4);
                     jLeft++;
@@ -202,6 +204,7 @@ async function visualizeInsertionSort() {
             iTop--;
             iElement.style.top = iTop + "px";
         }
+        iElement.style.backgroundColor = "white";
         for (let k = 0; k <= i; k++) {
             let e = document.getElementById(k);
             e.innerText = unsortedArray[k];
