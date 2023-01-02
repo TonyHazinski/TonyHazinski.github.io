@@ -18,6 +18,8 @@ function startVisualization() {
         visualizeModifiedBubbleSort();
     } else if (selectedSort === "selection") {
         visualizeSelectionSort();
+    } else if (selectedSort === "insertion") {
+        visualizeInsertionSort();
     }
 }
 
@@ -36,11 +38,8 @@ async function visualizeBubbleSort() {
                 unsortedArray[j + 1] = temp;
                 let larger = document.getElementById(j)
                 let smaller = document.getElementById(j + 1)
-                larger.style.top = "0px";
-                larger.style.left = "0px";
                 let largerTop = 0;
                 let largerLeft = 0;
-                smaller.style.left = "0px";
                 let smallerLeft = 0;
                 while (largerTop < 70) {
                     await sleep(4);
@@ -84,11 +83,8 @@ async function visualizeModifiedBubbleSort() {
                 unsortedArray[j + 1] = temp;
                 let larger = document.getElementById(j)
                 let smaller = document.getElementById(j + 1)
-                larger.style.top = "0px";
-                larger.style.left = "0px";
                 let largerTop = 0;
                 let largerLeft = 0;
-                smaller.style.left = "0px";
                 let smallerLeft = 0;
                 while (largerTop < 70) {
                     await sleep(4);
@@ -135,12 +131,8 @@ async function visualizeSelectionSort() {
             unsortedArray[smallest] = temp;
             let smallestElement = document.getElementById(smallest);
             let iElement = document.getElementById(i);
-            smallestElement.style.top = "0px";
-            smallestElement.style.left = "0px";
             let smallestTop = 0;
             let smallestLeft = 0;
-            iElement.style.top = "0px";
-            iElement.style.left = "0px";
             let iElementTop = 0;
             let iElementLeft = 0;
             while (smallestTop < 70) {
@@ -172,4 +164,49 @@ async function visualizeSelectionSort() {
             smallestElement.innerText = unsortedArray[smallest];
         }
     }
+}
+
+async function visualizeInsertionSort() {
+    for (let i = 1; i < unsortedArray.length; i++) {
+        let temp = unsortedArray[i];
+        let iElement = document.getElementById(i);
+        let iTop = 0;
+        let iLeft = 0;
+        while (iTop < 70) {
+            await sleep(4);
+            iTop++;
+            iElement.style.top = iTop + "px";
+        }
+        let emptyspace = i;
+        for (let j = i - 1; j >= 0; j--) {
+            if (unsortedArray[j] > temp) {
+                unsortedArray[j + 1] = unsortedArray[j];
+                let jElement = document.getElementById(j);
+                let jLeft = 0;
+                while (jLeft < 62) {
+                    await sleep(4);
+                    jLeft++;
+                    jElement.style.left = jLeft + "px";
+                    iLeft--;
+                    iElement.style.left = iLeft + "px";
+                }
+                emptyspace = j
+            } else {
+                break;
+            }
+
+        }
+        unsortedArray[emptyspace] =  temp;
+        while (iTop > 0) {
+            await sleep(4);
+            iTop--;
+            iElement.style.top = iTop + "px";
+        }
+        for (let k = 0; k <= i; k++) {
+            let e = document.getElementById(k);
+            e.innerText = unsortedArray[k];
+            e.style.left = "0px";
+        }
+    }
+
 }
