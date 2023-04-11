@@ -1,4 +1,6 @@
 let unsortedArray = [];
+let graph = document.getElementById("graph");
+let ctx = graph.getContext("2d");
 
 function randomizeArray() {
     for (let i = 0; i < 10; i++) {
@@ -13,6 +15,9 @@ function startVisualization() {
     let selectedSort = document.getElementById("sort-select").value;
 
     if(selectedSort === "bubble") {
+        calculateY = bubbleSortEquation;
+        ctx.strokeStyle = "lightblue";
+        graphTimeComplexity();
         visualizeBubbleSort();
     } else if (selectedSort === "modifiedBubble") {
         visualizeModifiedBubbleSort();
@@ -20,6 +25,9 @@ function startVisualization() {
         visualizeSelectionSort();
     } else if (selectedSort === "insertion") {
         visualizeInsertionSort();
+        calculateY = insertionSortEquation;
+        ctx.strokeStyle = "lightgreen";
+        graphTimeComplexity();
     }
 }
 
@@ -211,5 +219,36 @@ async function visualizeInsertionSort() {
             e.style.left = "0px";
         }
     }
+}
 
+function calculateY(x){};
+
+function bubbleSortEquation(x) {
+    // ctx.strokeStyle = "lightblue";
+    return x**2;
+}
+
+function mergeSortEquation(x) {
+    return x * Math.log2(x);
+}
+
+function insertionSortEquation(x) {
+    return (x**2 + (3 * x) - 4)/4;
+}
+
+function graphTimeComplexity() {
+    let prevX =  0;
+    let prevY = 150;
+    for (let x = 0; x <= 200; x += 5) {
+        let y = calculateY(x);
+        // x *= (300/200);
+        // y = 150 - y * (150/2000);
+        ctx.beginPath();
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(x * (300/200), 150 - y * (150/2000));
+        ctx.stroke();
+        ctx.closePath();
+        prevX = x * (300/200);
+        prevY = 150 - y * (150/2000);
+    }
 }
