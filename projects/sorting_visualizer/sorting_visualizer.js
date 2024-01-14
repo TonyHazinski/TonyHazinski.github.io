@@ -15,9 +15,9 @@ function startVisualization() {
     let selectedSort = document.getElementById("sort-select").value;
 
     if(selectedSort === "bubble") {
-        calculateY = bubbleSortEquation;
-        ctx.strokeStyle = "lightblue";
-        graphTimeComplexity();
+        // calculateY = bubbleSortEquation;
+        // ctx.strokeStyle = "lightblue";
+        // graphTimeComplexity();
         visualizeBubbleSort();
     } else if (selectedSort === "modifiedBubble") {
         visualizeModifiedBubbleSort();
